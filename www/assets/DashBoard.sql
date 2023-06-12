@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `PHP_Bank`
+-- Base de données : `DashBoard`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bankaccounts`
+-- Structure de la table `accounts`
 --
 
-CREATE TABLE `bankaccounts` (
+CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `money` double NOT NULL,
