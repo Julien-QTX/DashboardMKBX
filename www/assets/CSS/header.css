@@ -6,7 +6,7 @@ body {
 ul {
     display: flex;
     border-bottom: 2px solid gray;
-    background-color: rgb(146, 199, 94);
+    background-color: rgb(209, 117, 223);
 }
 
 li {
@@ -27,8 +27,10 @@ h1 {
     margin-left: 50px !important;
 }
 
-h2, h3, h4, p, select {
-    margin-left:20px;
+h2,
+h3,
+h4,
+p,
+select {
+    margin-left: 20px;
 }
-
-
