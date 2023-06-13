@@ -3,17 +3,17 @@
 require_once __DIR__ . "/../../src/init.php";
 
 if ($_POST['retrait'] == "0") {
-    error_die('Aucune somme n\'a été selectionnée' , '/?page=operations/withdraw');
+    error_die('Aucune somme n\'a été selectionnée', '/?page=operations/withdraw');
 }
 
-$stmh = $db->prepare('SELECT * FROM bankaccounts WHERE id_user = ?');
+$stmh = $db->prepare('SELECT * FROM entrepot WHERE id_user = ?');
 $stmh->execute([$_SESSION['user_id']]);
 $usr_withdrawal = $stmh->fetch();
 
 //error_die((float)$_POST['retrait'], '/?page=operations/withdraw');
 
-if ($usr_withdrawal['money']-(float)$_POST['retrait'] < -1000) {
-    error_die('Vous avez atteint le maximum de découvert autorisé' , '/?page=operations/withdraw');
+if ($usr_withdrawal['money'] - (float)$_POST['retrait'] < -1000) {
+    error_die('Vous avez atteint le maximum de découvert autorisé', '/?page=operations/withdraw');
 }
 
 if ($user->role >= 200) {
@@ -32,9 +32,7 @@ if ($user->role >= 200) {
         $_SESSION['user_id'],
         $last_id['id']
     ]);
-
-}
-else {
+} else {
     $operation_withdrawal = Operation::createBankOp($usr_withdrawal['id'], $_POST['retrait'], 50);
     $opId = $operationManager->insertBankOp($operation_withdrawal, 'withdrawals');
 }

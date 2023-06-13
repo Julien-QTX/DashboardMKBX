@@ -26,11 +26,11 @@ if ($user != false) {
 
     <?php } else if ($user->role > 1) {
 
-        $stmh = $db->prepare('SELECT money, id FROM bankaccounts WHERE id_user = ?');
+        $stmh = $db->prepare('SELECT money, id FROM entrepot WHERE id_user = ?');
         $stmh->execute([$_SESSION['user_id']]);
         $actual_money = $stmh->fetch();
 
-        $stmh = $db->prepare('SELECT name FROM currencies WHERE id = 1');
+        $stmh = $db->prepare('SELECT name FROM produits WHERE id = 1');
         $stmh->execute();
         $actual_currency = $stmh->fetch();
     ?>
@@ -41,7 +41,7 @@ if ($user != false) {
 
         <?php
 
-        $stmh = $db->prepare('SELECT * FROM bankaccounts WHERE id_user = ?');
+        $stmh = $db->prepare('SELECT * FROM entrepot WHERE id_user = ?');
         $stmh->execute([$_SESSION['user_id']]);
         $usr_profile = $stmh->fetch();
 
@@ -53,7 +53,7 @@ if ($user != false) {
 
         <?php
 
-        $stmh = $db->prepare('SELECT * FROM deposits WHERE id_bank_account=? AND status=100 ORDER BY operation_date DESC LIMIT 10');
+        $stmh = $db->prepare('SELECT * FROM deposits WHERE id_entrepot=? AND status=100 ORDER BY operation_date DESC LIMIT 10');
         $stmh->execute([$usr_profile['id']]);
         $last_deposits = $stmh->fetchAll();
 
@@ -73,7 +73,7 @@ if ($user != false) {
 
         <?php
 
-        $stmh = $db->prepare('SELECT * FROM withdrawals WHERE id_bank_account=? AND status=100 ORDER BY operation_date DESC LIMIT 10');
+        $stmh = $db->prepare('SELECT * FROM withdrawals WHERE id_entrepot=? AND status=100 ORDER BY operation_date DESC LIMIT 10');
         $stmh->execute([$usr_profile['id']]);
         $last_withdrawals = $stmh->fetchAll();
 
@@ -92,16 +92,16 @@ if ($user != false) {
 
         <?php
 
-        $stmh = $db->prepare('SELECT * FROM transactions WHERE sender_account=? ORDER BY operation_date DESC LIMIT 10');
+        $stmh = $db->prepare('SELECT * FROM transactions WHERE sender_local=? ORDER BY operation_date DESC LIMIT 10');
         $stmh->execute([$usr_profile['id']]);
         $last_transactions = $stmh->fetchAll();
 
         foreach ($last_transactions as $lt) {
-            $stmh = $db->prepare('SELECT * FROM bankaccounts WHERE id=?');
-            $stmh->execute([$lt['receiver_account']]);
+            $stmh = $db->prepare('SELECT * FROM entrepot WHERE id=?');
+            $stmh->execute([$lt['receiver_local']]);
             $receiver = $stmh->fetch();
 
-            //echo $lt['receiver_account'];
+            //echo $lt['receiver_local'];
 
             $stmh = $db->prepare('SELECT * FROM users WHERE id=?');
             $stmh->execute([$receiver['id_user']]);
@@ -122,13 +122,13 @@ if ($user != false) {
 
 <?php
 
-        $stmh = $db->prepare('SELECT * FROM transactions WHERE receiver_account=? ORDER BY operation_date DESC LIMIT 10');
+        $stmh = $db->prepare('SELECT * FROM transactions WHERE receiver_local=? ORDER BY operation_date DESC LIMIT 10');
         $stmh->execute([$usr_profile['id']]);
         $last_transactions = $stmh->fetchAll();
 
         foreach ($last_transactions as $lt) {
-            $stmh = $db->prepare('SELECT * FROM bankaccounts WHERE id=?');
-            $stmh->execute([$lt['sender_account']]);
+            $stmh = $db->prepare('SELECT * FROM entrepot WHERE id=?');
+            $stmh->execute([$lt['sender_local']]);
             $sender = $stmh->fetch();
 
             $stmh = $db->prepare('SELECT * FROM users WHERE id=?');

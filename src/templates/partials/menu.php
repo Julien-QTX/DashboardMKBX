@@ -11,7 +11,9 @@
         <li><a href="/?page=profile">Profil</a></li>
         <li><a href="/?page=account_verification">Vérifier compte</a></li>
         <li><a href="/?page=operation_verification">Vérifier opérations</a></li>
-        <li><a href="/?page=operations">Opérations</a></li>
+        <li><a href="/?page=operations/deposit">Ajouter des Stocks</a></li>
+        <li><a href="/?page=operations/transaction">Envoi inter-entrepôt</a></li>
+        <li><a href="/?page=operations/withdraw">Retrait Commande clients</a></li>
         <li><a href="/?page=gestion_commandes">Gestion Commandes</a></li>
         <li><a href="/?page=gestion_produits">Gestion Produits</a></li>
         <li><a href="/?page=gestion_utilisateurs">Gestion utilisateurs</a></li>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . '/../../init.php';
 
@@ -15,10 +15,6 @@ ob_start();
 include_once __DIR__ . '/../partials/alert_errors.php';
 include_once __DIR__ . '/../partials/alert_success.php';
 
-if ($user->role < 200) {
-    header('Location: /?page=home');
-}
-
 $stmh = $db->prepare('SELECT * FROM users WHERE role<=10');
 $stmh->execute();
 $utilisateur = $stmh->fetchAll();
@@ -28,8 +24,6 @@ foreach ($utilisateur as $usr) {
     echo '<p>';
     echo 'Utilisateur : ' . $usr['email'] . ';    Role : ' . $config['roles'][$usr['role']];
     echo '</p>';
-
-
 }
 ?>
 
@@ -38,10 +32,10 @@ foreach ($utilisateur as $usr) {
         <option value="">Sélectionner un utilisateur</option>
         <?php
         foreach ($utilisateur as $usr) { ?>
-            
-            <option value="<?=$usr['id']?>"><?=$usr['email']?></option>
-        
-       <?php }
+
+            <option value="<?= $usr['id'] ?>"><?= $usr['email'] ?></option>
+
+        <?php }
         ?>
     </select>
 

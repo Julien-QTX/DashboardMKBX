@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
 
     public $id;
     public $fullname;
@@ -10,7 +11,8 @@ class User {
     public $created_at;
     public $last_ip;
 
-    public static function create($fullname, $email, $password, $role, $ip) {
+    public static function create($fullname, $email, $password, $role, $ip)
+    {
         $user = new User();
         $user->fullname = $fullname;
         $user->email = $email;
@@ -20,14 +22,15 @@ class User {
         return $user;
     }
 
-    public function verifyPassword($password) {
+    public function verifyPassword($password)
+    {
         $hashPassword = hash('sha256', $password);
         return ($hashPassword === $this->password);
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         $date = new DateTime($this->created_at);
         return $date->format('d/m/Y H:i:s');
     }
-
 }

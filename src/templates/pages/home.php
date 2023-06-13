@@ -16,7 +16,7 @@ ob_start();
 if ($user !== false) {
     if ($user->role == 0) { ?>
 
-<h2>Votre compte a été banni</h2>
+        <h2>Votre compte a été banni</h2>
 
 <?php }
 }
@@ -118,12 +118,12 @@ $produitsParPage = 10;
         <th>Description</th>
     </tr>
     <?php foreach ($produits as $produit) : ?>
-    <tr>
-        <td><?php echo $produit['id']; ?></td>
-        <td><?php echo $produit['nom']; ?></td>
-        <td><?php echo $produit['prix']; ?></td>
-        <td><?php echo $produit['description']; ?></td>
-    </tr>
+        <tr>
+            <td><?php echo $produit['id']; ?></td>
+            <td><?php echo $produit['nom']; ?></td>
+            <td><?php echo $produit['prix']; ?></td>
+            <td><?php echo $produit['description']; ?></td>
+        </tr>
     <?php endforeach; ?>
 </table>
 

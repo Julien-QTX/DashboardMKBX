@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . '/../../init.php';
 
@@ -12,10 +12,6 @@ ob_start();
 
 <?php
 
-if ($user->role < 200) {
-    header('Location: /?page=home');
-}
-
 include_once __DIR__ . '/../partials/alert_errors.php';
 include_once __DIR__ . '/../partials/alert_success.php';
 
@@ -25,9 +21,9 @@ include_once __DIR__ . '/../partials/alert_success.php';
 
 <?php
 
-$stmh = $db->prepare('SELECT deposits.id, deposits.id_bank_account, deposits.status, deposits.value, users.email, bankaccounts.id_user, currencies.name 
-                      FROM deposits INNER JOIN bankaccounts ON id_bank_account=bankaccounts.id
-                      INNER JOIN users ON bankaccounts.id_user = users.id INNER JOIN currencies ON bankaccounts.id_currencies = currencies.id
+$stmh = $db->prepare('SELECT deposits.id, deposits.id_entrepot, deposits.status, deposits.value, users.email, entrepot.id_user, produits.name 
+                      FROM deposits INNER JOIN entrepot ON id_entrepot=entrepot.id
+                      INNER JOIN users ON entrepot.id_user = users.id INNER JOIN produits ON entrepot.id_produits = produits.id
                       WHERE status=50');
 $stmh->execute();
 $operation = $stmh->fetchAll();
@@ -36,10 +32,9 @@ foreach ($operation as $op) {
 
     $user_role = array_search($op['status'], $config);
     echo '<p>';
-    echo 'Demande de dépôt n°' . $op['id'] . ', demandée par '.$op['email'].', d\'une valeur de '.$op['value'].' '.$op['name'].
-    '. Statut : ' . $config['status'][$op['status']];
+    echo 'Demande de dépôt n°' . $op['id'] . ', demandée par ' . $op['email'] . ', d\'une valeur de ' . $op['value'] . ' ' . $op['name'] .
+        '. Statut : ' . $config['status'][$op['status']];
     echo '</p>';
-
 }
 ?>
 
@@ -48,10 +43,10 @@ foreach ($operation as $op) {
         <option value="">Sélectionner une opération</option>
         <?php
         foreach ($operation as $op) { ?>
-            
-            <option value="<?=$op['id_user']?>,<?=$op['id']?>">Opération n°<?=$op['id']?></option>
-        
-       <?php }
+
+            <option value="<?= $op['id_user'] ?>,<?= $op['id'] ?>">Opération n°<?= $op['id'] ?></option>
+
+        <?php }
         ?>
     </select>
 
@@ -64,9 +59,9 @@ foreach ($operation as $op) {
 
 <?php
 
-$stmh = $db->prepare('SELECT withdrawals.id, withdrawals.id_bank_account, withdrawals.status, withdrawals.value, users.email, bankaccounts.id_user, currencies.name 
-                      FROM withdrawals INNER JOIN bankaccounts ON id_bank_account=bankaccounts.id
-                      INNER JOIN users ON bankaccounts.id_user = users.id INNER JOIN currencies ON bankaccounts.id_currencies = currencies.id
+$stmh = $db->prepare('SELECT withdrawals.id, withdrawals.id_entrepot, withdrawals.status, withdrawals.value, users.email, entrepot.id_user, produits.name 
+                      FROM withdrawals INNER JOIN entrepot ON id_entrepot=entrepot.id
+                      INNER JOIN users ON entrepot.id_user = users.id INNER JOIN produits ON entrepot.id_produits = produits.id
                       WHERE status=50');
 $stmh->execute();
 $operation = $stmh->fetchAll();
@@ -75,11 +70,9 @@ foreach ($operation as $op) {
 
     $user_role = array_search($op['status'], $config);
     echo '<p>';
-    echo 'Demande de retrait n°' . $op['id'] . ', demandée par '.$op['email'].', d\'une valeur de '.$op['value'].' '.$op['name'].
-    '. Statut : ' . $config['status'][$op['status']] . '<br>';
+    echo 'Demande de retrait n°' . $op['id'] . ', demandée par ' . $op['email'] . ', d\'une valeur de ' . $op['value'] . ' ' . $op['name'] .
+        '. Statut : ' . $config['status'][$op['status']] . '<br>';
     echo '</p>';
-    
-
 }
 ?>
 
@@ -88,10 +81,10 @@ foreach ($operation as $op) {
         <option value="">Sélectionner une opération</option>
         <?php
         foreach ($operation as $op) { ?>
-            
-            <option value="<?=$op['id_user']?>,<?=$op['id']?>">Opération n°<?=$op['id']?></option>
-        
-       <?php }
+
+            <option value="<?= $op['id_user'] ?>,<?= $op['id'] ?>">Opération n°<?= $op['id'] ?></option>
+
+        <?php }
         ?>
     </select>
 

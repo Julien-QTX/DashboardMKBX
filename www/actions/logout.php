@@ -4,4 +4,4 @@ session_start();
 session_unset();
 session_destroy();
 
-header('Location: /?page=home')
+header('Location: /?page=home');
