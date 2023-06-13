@@ -20,24 +20,21 @@ $user_name = $stmh->fetch();
 
 if ($user != false) {
 
-    if ($user->role == 1) { ?>
+    if ($user->role > 1) {
 
-        <h3>Votre compte est en cours de vérification par un administrateur</h3>
-
-    <?php } else if ($user->role > 1) {
-
-        $stmh = $db->prepare('SELECT money, id FROM entrepot WHERE id_user = ?');
+        $stmh = $db->prepare('SELECT lieu, id FROM entrepot WHERE id_user = ?');
         $stmh->execute([$_SESSION['user_id']]);
-        $actual_money = $stmh->fetch();
+        $actual_lieu = $stmh->fetch();
 
         $stmh = $db->prepare('SELECT name FROM produits WHERE id = 1');
         $stmh->execute();
-        $actual_currency = $stmh->fetch();
-    ?>
+        $actual_produit = $stmh->fetch();
 
-        <h3>Votre compte en banque : </h3>
+?>
 
-        <p>Vous avez <?= $actual_money['money'] ?> <?= $actual_currency['name'] ?>s sur votre compte</p>
+        <h3>Vos articles en vente : </h3>
+
+        <p>Vous avez <?= $actual_produit['name'] ?> à cet endroit <?= $actual_lieu['lieu'] ?></p>
 
         <?php
 
@@ -49,7 +46,7 @@ if ($user != false) {
 
         <h2>Dernières opérations</h2>
 
-        <h3>Dépôts</h3>
+        <h3>Stocks ajoutés</h3>
 
         <?php
 
@@ -57,19 +54,16 @@ if ($user != false) {
         $stmh->execute([$usr_profile['id']]);
         $last_deposits = $stmh->fetchAll();
 
-        /*$date = new DateTime($this->created_at);
-        return $date->format('d/m/Y'. 'à' .'H:i');*/
-
         foreach ($last_deposits as $ld) {
             $date = new DateTime($ld['operation_date']);
-            $date = $date->format('d/m/Y' .  ' à ' . 'H:i');
-            echo '<span class="operation">Dépôt de ' . $ld['value'] . ' Euros';
-            echo ' le ' . $date . '</span><br>';
+            $formatted_date = $date->format('d/m/Y' .  ' à ' . 'H:i');
+            echo '<span class="operation">Dépôt de ' . $ld['value'] . ' produit(s)';
+            echo ' le ' . $formatted_date . '</span><br>';
         }
 
         ?>
 
-        <h3>Retraits</h3>
+        <h3>Commandes clients</h3>
 
         <?php
 
@@ -79,9 +73,9 @@ if ($user != false) {
 
         foreach ($last_withdrawals as $lw) {
             $date = new DateTime($lw['operation_date']);
-            $date = $date->format('d/m/Y' .  ' à ' . 'H:i');
-            echo '<span class="operation">Retrait de ' . $lw['value'] . ' Euros';
-            echo ' le ' . $date . '</span><br>';
+            $formatted_date = $date->format('d/m/Y' .  ' à ' . 'H:i');
+            echo '<span class="operation">Retrait de ' . $lw['value'] . ' produit(s)';
+            echo ' le ' . $formatted_date . '</span><br>';
         }
 
         ?>
@@ -101,19 +95,15 @@ if ($user != false) {
             $stmh->execute([$lt['receiver_local']]);
             $receiver = $stmh->fetch();
 
-            //echo $lt['receiver_local'];
-
             $stmh = $db->prepare('SELECT * FROM users WHERE id=?');
             $stmh->execute([$receiver['id_user']]);
             $receiver_name = $stmh->fetch();
 
             $date = new DateTime($lt['operation_date']);
-            $date = $date->format('d/m/Y' .  ' à ' . 'H:i');
-
-            //echo $receiver_name['fullname'];
+            $formatted_date = $date->format('d/m/Y' .  ' à ' . 'H:i');
 
             echo '<span class="operation">Envoi de ' . $lt['value'] . ' Euros à ' . $receiver_name['fullname'];
-            echo ' le ' . $date . '</span><br>';
+            echo ' le ' . $formatted_date . '</span><br>';
         }
 
         ?>
@@ -136,10 +126,10 @@ if ($user != false) {
             $sender_name = $stmh->fetch();
 
             $date = new DateTime($lt['operation_date']);
-            $date = $date->format('d/m/Y' .  ' à ' . 'H:i');
+            $formatted_date = $date->format('d/m/Y' .  ' à ' . 'H:i');
 
             echo '<span class="operation">Reçu ' . $lt['value'] . ' Euros de ' . $sender_name['fullname'];
-            echo ' le ' . $date . '</span><br>';
+            echo ' le ' . $formatted_date . '</span><br>';
         }
     }
 }

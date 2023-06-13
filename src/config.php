@@ -11,8 +11,8 @@ $config['db'] = [
 
 $config['roles'] = [
     0 => "Utilisateur Banni",
-    1 => "Utilisateur Non-Vérifié",
-    10 => "Utilisateur Vérifié",
+    1 => "Client Non-Vérifié",
+    10 => "Client",
     200 => "Manager",
     1000 => "Admin"
 ];

@@ -31,26 +31,26 @@ class OperationManager
     {
         $stmh = $this->db->prepare('SELECT * FROM entrepot WHERE id_user = ?');
         $stmh->execute([$user_id]);
-        $utilisateur = $stmh->fetch();
+        $entrepot = $stmh->fetch();
 
         $money_usr = floatval($value);
-        $new_money = $utilisateur['money'] + $money_usr;
+        $new_money = $entrepot['money'] + $money_usr;
 
         $stmh = $this->db->prepare('UPDATE entrepot SET money = ? WHERE id = ?');
-        $stmh->execute([$new_money, $utilisateur['id']]);
+        $stmh->execute([$new_money, $entrepot['id']]);
     }
 
     public function withdraw($user_id, $value)
     {
         $stmh = $this->db->prepare('SELECT * FROM entrepot WHERE id_user = ?');
         $stmh->execute([$user_id]);
-        $utilisateur = $stmh->fetch();
+        $entrepot = $stmh->fetch();
 
         $money_usr = floatval($value);
-        $new_money = $utilisateur['money'] - $money_usr;
+        $new_money = $entrepot['money'] - $money_usr;
 
         $stmh = $this->db->prepare('UPDATE entrepot SET money = ? WHERE id = ?');
-        $stmh->execute([$new_money, $utilisateur['id']]);
+        $stmh->execute([$new_money, $entrepot['id']]);
     }
 
     public function transaction($sender_id, $receiver_id, $value)

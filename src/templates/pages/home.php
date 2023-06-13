@@ -21,9 +21,9 @@ if ($user !== false) {
 <?php }
 }
 
-/*if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])) {
     echo '<p>' . $_SESSION['user_id'] . '</p>';
-}*/
+}
 
 
 // Nombre de produits à afficher par page
@@ -126,24 +126,6 @@ $produitsParPage = 10;
         </tr>
     <?php endforeach; ?>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
 $page_content = ob_get_clean();
