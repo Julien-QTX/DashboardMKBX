@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../init.php';
 
-$page_title = "Profil";
+$page_title = "Profile";
 
 $head_metas = "<link rel=stylesheet href=assets/CSS/profil.css>";
 
