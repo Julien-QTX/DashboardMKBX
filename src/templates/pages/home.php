@@ -11,97 +11,186 @@ ob_start();
 
 ?>
 
-
-<div class="banner">
-  <div class="banner__overlay">
-    <div class="banner__container">
-      <h1 class="banner__title">TEST</h1>
-      <p class="banner__text">E-commerce</p>
-      <a href="#" class="btn btn--opacity">SHOP</a>
-    </div>
-
-    <img class="banner__scroll-down" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im0xMjEuMywzNC42Yy0xLjYtMS42LTQuMi0xLjYtNS44LDBsLTUxLDUxLjEtNTEuMS01MS4xYy0xLjYtMS42LTQuMi0xLjYtNS44LDAtMS42LDEuNi0xLjYsNC4yIDAsNS44bDUzLjksNTMuOWMwLjgsMC44IDEuOCwxLjIgMi45LDEuMiAxLDAgMi4xLTAuNCAyLjktMS4ybDUzLjktNTMuOWMxLjctMS42IDEuNy00LjIgMC4xLTUuOHoiIGZpbGw9IiNGRkZGRkYiLz4KICA8L2c+Cjwvc3ZnPgo=" />
-  </div>
-</div>
-<div class="sect sect--type">
-  <div class="container">
-    <div class="row row--center">
-      <div class="col-md-5 col-xs-8 col-sm-6 col--inbl">
-        <h1 class="sect__title">Lorem ipsum dolor sit amet consectetur.</h1>
-        <p class="sect__subtitle">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse tempora quasi suscipit.
+    <!-- Showcase -->
+    <header class="showcase">
+      <h2>E-commerce</h2>
+      <p>
+        Select Surfaces are on sale now - save while supplies last
       </p>
-      </div>
-    </div>
-    <div class="row row--small row--margin row--center">
-      <div class="col-md-4 col-sm-4 coffee">
-        <img src="" class="coffee__img">
-        <h2 class="coffee__name">Mocha</h2>
-        <p class="coffee__descr">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse tempora quasi suscipit.
+      <a href="/?page=panier" class="btn">
+        Shop Now 
+      </a>
+    </header>
+
+    <!-- Home cards 1 -->
+    <section class="home-cards">
+      <div>
+        <img src="../../assets/img/chaussure1.jpg" alt="">
+        <h3>Nike</h3>
+        <p>
+          40.99€
         </p>
+        <a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
       </div>
+      <div>
+        <img src="../../assets/img/chaussure2.jpg" alt="" />
+        <h3>Nike</h3>
+        <p>
+          40.99€
+        </p>
+        <a href="/?page=panier">Acheté <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div>
+        <img src="../../assets/img/chaussure3.jpg" alt="" />
+        <h3>Nike</h3>
+        <p>
+          40.99€
+        </p>
+        <a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div>
+        <img src="../../assets/img/chaussure4.jpg" alt="" />
+        <h3>Nike</h3>
+        <p>
+          40.99€
+        </p>
+        <a href="#">Acheté<i class="fas fa-chevron-right"></i></a>
+      </div>
+    </section>
+
+    <!-- Xbox -->
+    <section class="pack">
+      <div class="content">
+        <h2>Pack Ultimate</h2>
+        <p> Ultimate
+          Pack
+          next favorite game.</p>
+          <a href="#" class="btn">
+            Join Now <i class="fas fa-chevron-right"></i>
+          </a>
+      </div>
+    </section>
+
+    <!-- Home cards 2 -->
+			<section class="home-cards">
+				<div>
+					<img src="../../assets/img/T-shirt1.jpg" alt="" />
+					<h3>T-shirt</h3>
+					<p>
+						19.99€
+					</p>
+					<a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
+				</div>
+				<div>
+					<img src="../../assets/img/T-shirt2.jpg" alt="" />
+					<h3>T-shirt</h3>
+					<p>
+            19.99€
+					</p>
+					<a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
+				</div>
+				<div>
+					<img src="../../assets/img/T-shirt2.jpg" alt="" />
+					<h3>T-shirt</h3>
+					<p>
+            19.99€
+					</p>
+					<a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
+				</div>
+				<div>
+					<img src="../../assets/img/T-shirt1.jpg" alt="" />
+					<h3>T-shirt</h3>
+					<p>
+            19.99€
+					</p>
+					<a href="#">Acheté <i class="fas fa-chevron-right"></i></a>
+				</div>
+      </section>
       
-      <div class="col-md-4 col-sm-4 coffee">
-        <img src="" class="coffee__img">
-        <h2 class="coffee__name">Pour</h2>
-        <p class="coffee__descr">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse tempora quasi suscipit.
-        </p>
-      </div>
-      
-       <div class="col-md-4 col-sm-4 coffee">
-        <img src="" class="coffee__img">
-        <h2 class="coffee__name">bagette</h2>
-        <p class="coffee__descr">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-        </p>
-      </div>  
-    </div>
-       <div class="row row--margin row--center">
-         <a href="#" class="btn">Full menu</a>
-       </div>
-  </div>
-</div>
-<div class="sect sect--brown sect--no-bottom">
-  <div class="container">
-    <div class="row row--center">
-      <div class="col-md-5 col-sm-6 col--inbl ">
-        <h1 class="sect__title sect--white-text">Our Story</h1>
-      <p class="sect__subtitle sect--white-text">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
-      </p>
-      </div>
-    </div>
-</div>
-  </div>
-  <div class="story-img"></div>
+      <!-- Carbon -->
+      <section class="carbon dark">
+        <div class="content">
+          <h2>Commiting To Carbon Negative</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing reiciendis excepturi eveniet fugit facere id enim 
+            incidunt voluptatibus rem itaque officia est et voluptate obcaecati?</p>
+            <a href="#" class="btn">
+              Learn More <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+      </section>
 
-<div class="half-sect">
-  <div class="half half-sect__first">
-    <div class="description">
-      <h2 class="description__title">FRESH</h2>
-      <p class="description__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse tempora quasi suscipit.</p>
-      <a href="#" class="btn">Learn more</a>
+      <!-- Follow -->
+      <section class="follow">
+        <p>Follow</p>
+        <a href="https://facebook.com">
+          <img src="https://i.ibb.co/LrVMXNR/social-fb.png" alt="Facebook">
+        </a>
+        <a href="https://twitter.com">
+          <img src="https://i.ibb.co/vJvbLwm/social-twitter.png" alt="Twitter">
+        </a>
+        <a href="https://linkedin.com">
+          <img src="https://i.ibb.co/b30HMhR/social-linkedin.png" alt="Linkedin">
+        </a>
+      </section>
     </div>
+      <!-- Links -->
+      <section class="links">
+        <div class="links-inner">
+          <ul>
+            <li><h3>What's New</h3></li>
+            <li><a href="#">Surface Pro X</a></li>
+            <li><a href="#">Surface Laptop 3</a></li>
+            <li><a href="#">Surface Pro 7</a></li>
+          </ul>
+          <ul>
+            <li><h3>Store</h3></li>
+            <li><a href="#">Account Profile</a></li>
+            <li><a href="#">Download Center</a></li>
+            <li><a href="#">Store support</a></li>
+          </ul>
+          <ul>
+            <li><h3>Education</h3></li>
+            <li><a href="#">education</a></li>
+            <li><a href="#">Office for students</a></li>
+            <li><a href="#">Office 365 for schools</a></li>
+          </ul>
+          <ul>
+            <li><h3>Enterprise</h3></li>
+            <li><a href="#">Azure</a></li>
+            <li><a href="#">AppSource</a></li>
+            <li><a href="#">Automotive</a></li>
+          </ul>
+          <ul>
+            <li><h3>Developer</h3></li>
+            <li><a href="#">Visual Studio</a></li>
+            <li><a href="#">Windowszs Dev Center</a></li>
+            <li><a href="#">Developer Network</a></li>
+          </ul>
+          <ul>
+            <li><h3>Company</h3></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Company news</a></li>
+          </ul>
+        </div>
+      </section>
 
-  </div>
-    <div class="half half-sect__second">  </div>
-</div>
-
-<div class="sect sect--great">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 col-sm-7 col-sm-offset-4 col-md-offset-6">
-        <div class="description">
-      <h2 class="description__title">GREAT</h2>
-      <p class="description__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse tempora quasi suscipit.</p>
-      <a href="#" class="btn">Learn more</a>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <div><i class="fas fa-globe fa-2x"></i> France (Europe)</div>
+          <ul>
+            <li><a href="#">Sitemap</a></li>
+					  <li><a href="#">Contact</a></li>
+					  <li><a href="#">Privacy & cookies</a></li>
+					  <li><a href="#">Terms of use</a></li>
+					  <li><a href="#">Trademarks</a></li>
+					  <li><a href="#">Safety & eco</a></li>
+					  <li><a href="#">About our ads</a></li>
+					  <li><a href="#">&copy;  2020</a></li>
+          </ul>
+        </div>
+      </footer>
 
 <?php
 

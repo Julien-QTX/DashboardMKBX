@@ -1,37 +1,57 @@
-<ul>
-    <li><a href="/?page=home">Home</a></li>
+<?php
+
+$page_scripts = "<link rel=stylesheet href=assets/JS/menu.js>";
+
+
+?>
+
+<body>
+  <nav class="navbar">
+    <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </span>
+    <a href="/?page=home" class="logo">E-commerce</a>
     
     <?php if ($user === false) { ?>
-
-        <li><a href="/?page=signup">SignUp</a></li>
-        <li><a href="/?page=login">Login</a></li>
+        <ul class="main-nav">
+            <li><a href="/?page=signup">SignUp</a></li>
+            <li><a href="/?page=login">Login</a></li>
+        </ul>
 
     <?php } else if ($user->role >= 200) { ?>
 
-        <li><a href="/?page=profile">Profil</a></li>
-        <li><a href="/?page=account_verification">Vérifier compte</a></li>
-        <li><a href="/?page=operation_verification">Vérifier opérations</a></li>
-        <li><a href="/?page=operations">Opérations</a></li>        
-        <li><a href="/actions/logout.php">Logout</a></li>
+        <ul class="main-nav" id="js-menu">
+            <li><a class="nav-links" href="/?page=profile">Profil</a></li>
+            <li><a class="nav-links" href="/?page=account_verification">Vérifier compte</a></li>
+            <li><a class="nav-links" href="/?page=operation_verification">Vérifier opérations</a></li>
+            <li><a class="nav-links" href="/?page=operations">Opérations</a></li>        
+            <li><a class="nav-links" href="/actions/logout.php">Logout</a></li>
+        </ul>
 
     <?php } else if ($user->role > 1){ ?>
 
-        <li><a href="/?page=profile">Profil</a></li>
-        <li><a href="/?page=operations">Opérations</a></li>        
-        <li><a href="/actions/logout.php">Logout</a></li>
+        <ul class="main-nav">
+            <li><a href="/?page=profile">Profil</a></li>
+            <li><a href="/?page=operations">Opérations</a></li>        
+            <li><a href="/actions/logout.php">Logout</a></li>
+        </ul>
 
     <?php } else if ($user->role > 0){ ?>
 
-        <li><a href="/?page=profile">Profil</a></li>
-        <li><a href="/actions/logout.php">Logout</a></li>
+        <ul class="main-nav">
+            <li><a href="/?page=profile">Profil</a></li>
+            <li><a href="/actions/logout.php">Logout</a></li>
+        </ul>
 
     <?php } else { ?>
 
         <li><a href="/actions/logout.php">Logout</a></li>
 
     <?php    } ?>
-   
-</ul>
+
+    </ul>
+  </nav>
+</body>
 
 <!--<div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
