@@ -119,7 +119,7 @@ function getAllVente()
 
     $req = $GLOBALS['connexion']->prepare($sql);
 
-    $req->execute(array(1));
+    $req->execute(array());
 
     return $req->fetch();
 }

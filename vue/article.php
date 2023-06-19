@@ -121,21 +121,6 @@ if (!empty($_GET['id'])) {
                 <button type="submit">Valider</button>
             </form>
             <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <table class="mtable">
                 <tr>
                     <th>Nom article</th>

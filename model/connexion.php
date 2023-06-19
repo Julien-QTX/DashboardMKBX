@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $nom_serveur = "localhost";

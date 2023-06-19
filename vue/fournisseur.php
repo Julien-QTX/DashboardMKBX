@@ -9,34 +9,28 @@ if (!empty($_GET['id'])) {
 <div class="home-content">
     <div class="overview-boxes">
         <div class="box">
-            <form
-                action="<?= !empty($_GET['id']) ? "../model/modifFournisseur.php" : "../model/ajoutFournisseur.php" ?>"
-                method="post">
+            <form action="<?= !empty($_GET['id']) ? "../model/modifFournisseur.php" : "../model/ajoutFournisseur.php" ?>" method="post">
                 <label for="nom">Nom</label>
-                <input value="<?= !empty($_GET['id']) ?  $fournisseur['nom'] : "" ?>" type="text" name="nom" id="nom"
-                    placeholder="Veuiller saisir le nom">
+                <input value="<?= !empty($_GET['id']) ?  $fournisseur['nom'] : "" ?>" type="text" name="nom" id="nom" placeholder="Veuiller saisir le nom">
                 <input value="<?= !empty($_GET['id']) ?  $fournisseur['id'] : "" ?>" type="hidden" name="id" id="id">
 
                 <label for="prenom">Prénom</label>
-                <input value="<?= !empty($_GET['id']) ?  $fournisseur['prenom'] : "" ?>" type="text" name="prenom"
-                    id="prenom" placeholder="Veuiller saisir le prénom">
+                <input value="<?= !empty($_GET['id']) ?  $fournisseur['prenom'] : "" ?>" type="text" name="prenom" id="prenom" placeholder="Veuiller saisir le prénom">
 
                 <label for="telephone">N° de téléphone</label>
-                <input value="<?= !empty($_GET['id']) ? $fournisseur['telephone'] : "" ?>" type="text" name="telephone"
-                    id="telephone" placeholder="Veuiller saisir le N° de téléphone">
+                <input value="<?= !empty($_GET['id']) ? $fournisseur['telephone'] : "" ?>" type="text" name="telephone" id="telephone" placeholder="Veuiller saisir le N° de téléphone">
 
                 <label for="adresse">Adresse</label>
-                <input value="<?= !empty($_GET['id']) ? $fournisseur['adresse'] : "" ?>" type="text" name="adresse"
-                    id="adresse" placeholder="Veuiller saisir l'adresse">
+                <input value="<?= !empty($_GET['id']) ? $fournisseur['adresse'] : "" ?>" type="text" name="adresse" id="adresse" placeholder="Veuiller saisir l'adresse">
 
                 <button type="submit">Valider</button>
 
                 <?php
                 if (!empty($_SESSION['message']['text'])) {
                 ?>
-                <div class="alert <?= $_SESSION['message']['type'] ?>">
-                    <?= $_SESSION['message']['text'] ?>
-                </div>
+                    <div class="alert <?= $_SESSION['message']['type'] ?>">
+                        <?= $_SESSION['message']['text'] ?>
+                    </div>
                 <?php
                 }
                 ?>
@@ -56,13 +50,13 @@ if (!empty($_GET['id'])) {
 
                 if (!empty($fournisseurs) && is_array($fournisseurs)) {
                     foreach ($fournisseurs as $key => $value) { ?>
-                <tr>
-                    <td><?= $value['nom'] ?></td>
-                    <td><?= $value['prenom'] ?></td>
-                    <td><?= $value['telephone'] ?></td>
-                    <td><?= $value['adresse'] ?></td>
-                    <td><a href="?id=<?= $value['id'] ?>"><i class='bx bx-edit-alt'></i></a></td>
-                </tr>
+                        <tr>
+                            <td><?= $value['nom'] ?></td>
+                            <td><?= $value['prenom'] ?></td>
+                            <td><?= $value['telephone'] ?></td>
+                            <td><?= $value['adresse'] ?></td>
+                            <td><a href="?id=<?= $value['id'] ?>"><i class='bx bx-edit-alt'></i></a></td>
+                        </tr>
                 <?php
                     }
                 }
