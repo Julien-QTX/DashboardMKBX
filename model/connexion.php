@@ -6,6 +6,8 @@ $nom_serveur = "localhost";
 $nom_base_de_donnee = "dashboard";
 $utilisateur = "root";
 $mot_de_passe = "root";
+$Secret_Key = "secret";
+$role = ["admin", "manager", "client"];
 
 try {
     $connexion = new PDO("mysql:host=$nom_serveur;dbname=$nom_base_de_donnee", $utilisateur, $mot_de_passe);

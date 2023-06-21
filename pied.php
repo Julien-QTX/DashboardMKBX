@@ -1,7 +1,7 @@
       <!-- footer section start -->
       <div class="footer_section layout_padding">
           <div class="container">
-              <div class="footer_logo"><a href="index.html"><img src="public/images/footer-logo.png"></a></div>
+              <div class="footer_logo"><a href="index.php"><img src="public/images/footer-logo.png"></a></div>
               <div class="input_bt">
                   <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
                   <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
@@ -29,6 +29,7 @@
       <!-- copyright section end -->
       <!-- Javascript files-->
       <script src="public/js/jquery.min.js"></script>
+      <script src="public/js/loginSignUp.js"></script>
       <script src="public/js/popper.min.js"></script>
       <script src="public/js/bootstrap.bundle.min.js"></script>
       <script src="public/js/jquery-3.0.0.min.js"></script>
@@ -37,13 +38,13 @@
       <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/custom.js"></script>
       <script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
+          function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+          }
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+          function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+          }
       </script>
       </body>
 

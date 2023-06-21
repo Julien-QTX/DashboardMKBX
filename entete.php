@@ -1,8 +1,9 @@
 <?php
 include './model/function.php';
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- basic -->
@@ -19,6 +20,7 @@ include './model/function.php';
     <meta name="author" content="">
     <!-- bootstrap css -->
     <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="public/css/loginSignUp.css">
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <!-- Responsive-->
@@ -68,7 +70,7 @@ include './model/function.php';
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="index.html"><img src="public/images/logo.png"></a></div>
+                        <div class="logo"><a href="index.php"><img src="public/images/logo.png"></a></div>
                     </div>
                 </div>
             </div>
@@ -78,25 +80,39 @@ include './model/function.php';
         <div class="header_section">
             <div class="container">
                 <div class="containt_main">
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="./vue/dashboard.php">Dashboard</a>
-                    </div>
-                    <span class="toggle_icon" onclick="openNav()"><img src="public/images/toggle-icon.png"></span>
+                    <!--/* if ($_SESSION["role"] == "manager" && $_SESSION["role"] == "admin") { ?>
+                        <div id="mySidenav" class="sidenav">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <a href="./vue/dashboard.php">Dashboard</a>
+                        </div>
+                        <span class="toggle_icon" onclick="openNav()"><img src="public/images/toggle-icon.png"></span>
+                    
+                    }
+                    */?>-->
+
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <?php
+                            $categories = getCategorie();
+
+                            if (!empty($categories) && is_array($categories)) {
+                                foreach ($categories as $key => $value) { ?>
+
+                                    <a class="dropdown-item" href="#<?= $value['libelle_categorie'] ?>"><?= $value['libelle_categorie'] ?></a>
+
+                            <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="main">
                         <!-- Another variation with a button -->
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search this blog">
-                            <div class="input-group-append">
+                            <input type="text" class="form-control" placeholder="Recherchez un article">
+                            <div class="input-group-append" method="get">
                                 <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -104,29 +120,32 @@ include './model/function.php';
                         </div>
                     </div>
                     <div class="header_box">
-                        <div class="lang_box ">
-                            <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                                <img src="public/images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom">
-                                English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                            </a>
-                            <div class="dropdown-menu ">
-                                <a href="#" class="dropdown-item">
-                                    <img src="public/images/flag-france.png" class="mr-2" alt="flag">
-                                    French
-                                </a>
-                            </div>
-                        </div>
-                        <div class="login_menu">
+                        <div class="login_menu main-nav">
                             <ul>
-                                <li><a href="#">
+                                <li>
+                                    <a href="#">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span class="padding_10">Cart</span></a>
+                                        <span class="padding_10">Panier</span>
+                                    </a>
                                 </li>
-                                <li><a href="#">
+                                <li>
+                                    <a href="#0" class="cd-signup">
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span class="padding_10">Cart</span></a>
+                                        <span class="padding_10">Profil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <?php
+                                    if (!isset($_SESSION['username'])) { ?>
+                                        <button><a href="./login.php">Connexion</a></button><?php
+                                                                                        } else { ?>
+                                        <button><a href="./model/disconnect.php">Déconnexion</a></button>
+                                    <?php
+                                                                                        }
+                                    ?>
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,10 @@
 <?php
 include '../model/function.php';
 
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login.php");
+}
+
 /*session_start();*/
 ?>
 <!DOCTYPE html>
@@ -24,50 +28,43 @@ include '../model/function.php';
         </div>
         <ul class="nav-links">
             <li>
-                <a href="./dashboard.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "dashboard.php" ? "active" : "" ?>">
+                <a href="./dashboard.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "dashboard.php" ? "active" : "" ?>">
                     <i class="bx bx-grid-alt"></i>
                     <span class="links_name">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="./vente.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "vente.php" ? "active" : "" ?>">
+                <a href="./vente.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "vente.php" ? "active" : "" ?>">
                     <i class='bx bx-shopping-bag'></i>
                     <span class="links_name">Vente</span>
                 </a>
             </li>
             <li>
-                <a href="./client.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "client.php" ? "active" : "" ?>">
+                <a href="./client.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "client.php" ? "active" : "" ?>">
                     <i class="bx bx-user"></i>
                     <span class="links_name">Client</span>
                 </a>
             </li>
             <li>
-                <a href="./article.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "article.php" ? "active" : "" ?>">
+                <a href="./article.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "article.php" ? "active" : "" ?>">
                     <i class="bx bx-box"></i>
                     <span class="links_name">Article</span>
                 </a>
             </li>
             <li>
-                <a href="./fournisseur.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "fournisseur.php" ? "active" : "" ?>">
+                <a href="./fournisseur.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "fournisseur.php" ? "active" : "" ?>">
                     <i class="bx bx-user"></i>
                     <span class="links_name">Fournisseur</span>
                 </a>
             </li>
             <li>
-                <a href="./categorie.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "categorie.php" ? "active" : "" ?>">
+                <a href="./categorie.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "categorie.php" ? "active" : "" ?>">
                     <i class="bx bx-category"></i>
                     <span class="links_name">Catégorie</span>
                 </a>
             </li>
             <li>
-                <a href="./commande.php"
-                    class="<?php echo basename($_SERVER['PHP_SELF']) == "commande.php" ? "active" : "" ?>">
+                <a href="./commande.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "commande.php" ? "active" : "" ?>">
                     <i class="bx bx-list-ul"></i>
                     <span class="links_name">Commandes</span>
                 </a>
@@ -115,7 +112,7 @@ include '../model/function.php';
                 </a>
             </li>
             <li class="log_out">
-                <a href="../index.php">
+                <a href="../model/disconnect.php">
                     <i class="bx bx-log-out"></i>
                     <span class="links_name">Déconnexion</span>
                 </a>
@@ -126,8 +123,7 @@ include '../model/function.php';
         <nav class="hidden-print">
             <div class="sidebar-button">
                 <i class="bx bx-menu sidebarBtn"></i>
-                <span
-                    class="dashboard"><?php echo ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF']))); ?></span>
+                <span class="dashboard"><?php echo ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF']))); ?></span>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Recherche..." />
