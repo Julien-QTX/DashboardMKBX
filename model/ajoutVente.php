@@ -2,7 +2,7 @@
 include_once './connexion.php';
 include_once './function.php';
 
-if (!empty($_POST['id_article']) && !empty($_POST['id_client']) && !empty($_POST['quantite']) && !empty($_POST['prix'])) {
+if (!empty($_POST['id_article']) && !empty($_POST['id_user']) && !empty($_POST['quantite']) && !empty($_POST['prix'])) {
 
     $article = getArticle($_POST['id_article']);
 
@@ -12,13 +12,13 @@ if (!empty($_POST['id_article']) && !empty($_POST['id_client']) && !empty($_POST
             $_SESSION['message']['type'] = "danger";
         } else {
 
-            $sql = "INSERT INTO vente(id_article, id_client, quantite, prix) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO vente(id_article, id_user, quantite, prix) VALUES (?, ?, ?, ?)";
 
             $req = $connexion->prepare($sql);
 
             $req->execute(array(
                 $_POST['id_article'],
-                $_POST['id_client'],
+                $_POST['id_user'],
                 $_POST['quantite'],
                 $_POST['prix']
             ));

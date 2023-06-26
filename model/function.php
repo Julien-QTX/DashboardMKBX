@@ -1,10 +1,10 @@
 <?php
 include 'connexion.php';
 
-function getArticle($id = null, $searchData = array())
+/*function getArticle($id = null, $searchData = array())
 {
     if (!empty($id)) {
-        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, images 
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, descritpion, quantite, prix_unitaire, date_fabrication, images 
         FROM article AS a, categorie_article AS c WHERE a.id=? AND c.id=a.id_categorie";
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute(array($id));
@@ -17,16 +17,81 @@ function getArticle($id = null, $searchData = array())
         if (!empty($quantite)) $search .= " AND a.quantite = $quantite ";
         if (!empty($prix_unitaire)) $search .= " AND a.prix_unitaire = $prix_unitaire ";
         if (!empty($date_fabrication)) $search .= " AND DATE (a.date_fabrication) = '$date_fabrication' ";
-        if (!empty($date_expiration)) $search .= " AND DATE (a.date_expiration) = '$date_expiration' ";
 
-        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, images
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, descritpion, quantite, prix_unitaire, date_fabrication, images
         FROM article AS a, categorie_article AS c WHERE c.id=a.id_categorie $search";
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute();
         return $req->fetchAll();
     } else {
 
-        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, images
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, images
+        FROM article AS a, categorie_article AS c WHERE c.id=a.id_categorie";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
+    }
+}*/
+
+function getArticle($id = null, $searchData = array())
+{
+    $id_user = $_SESSION['id']; // Remplacez 1 par la valeur appropriée de l'id_user
+
+    if (!empty($id)) {
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, description, quantite, prix_unitaire, date_fabrication, images 
+        FROM article AS a, categorie_article AS c, user AS u WHERE a.id=? AND c.id=a.id_categorie AND a.id_user=u.id AND a.id_user=?";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute(array($id, $id_user));
+        return $req->fetch();
+    } elseif (!empty($searchData)) {
+        $search =  "";
+        extract($searchData);
+        if (!empty($nom_article)) $search .= " AND a.nom_article LIKE '%$nom_article%' ";
+        if (!empty($id_categorie)) $search .= " AND a.id_categorie = $id_categorie ";
+        if (!empty($quantite)) $search .= " AND a.quantite = $quantite ";
+        if (!empty($prix_unitaire)) $search .= " AND a.prix_unitaire = $prix_unitaire ";
+        if (!empty($date_fabrication)) $search .= " AND DATE (a.date_fabrication) = '$date_fabrication' ";
+
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, description, quantite, prix_unitaire, date_fabrication, images
+        FROM article AS a, categorie_article AS c, user AS u WHERE a.id_user=u.id AND c.id=a.id_categorie AND a.id_user=? $search";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute(array($id_user));
+        return $req->fetchAll();
+    } else {
+        $sql = "SELECT a.id AS id, u.id AS id, id_categorie, nom_article, libelle_categorie, description, quantite, prix_unitaire, images
+        FROM article AS a, categorie_article AS c, user AS u WHERE c.id=a.id_categorie AND a.id_user=u.id AND a.id_user=?";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute(array($id_user));
+        return $req->fetchAll();
+    }
+}
+
+
+function getArticleIndex($id = null, $searchData = array())
+{
+    if (!empty($id)) {
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, descritpion, quantite, prix_unitaire, date_fabrication, images 
+        FROM article AS a, categorie_article AS c WHERE a.id=? AND c.id=a.id_categorie";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute(array($id));
+        return $req->fetch();
+    } elseif (!empty($searchData)) {
+        $search =  "";
+        extract($searchData);
+        if (!empty($nom_article)) $search .= " AND a.nom_article LIKE '%$nom_article%' ";
+        if (!empty($id_categorie)) $search .= " AND a.id_categorie = $id_categorie ";
+        if (!empty($quantite)) $search .= " AND a.quantite = $quantite ";
+        if (!empty($prix_unitaire)) $search .= " AND a.prix_unitaire = $prix_unitaire ";
+        if (!empty($date_fabrication)) $search .= " AND DATE (a.date_fabrication) = '$date_fabrication' ";
+
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, descritpion, quantite, prix_unitaire, date_fabrication, images
+        FROM article AS a, categorie_article AS c WHERE c.id=a.id_categorie $search";
+        $req = $GLOBALS['connexion']->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
+    } else {
+
+        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, images
         FROM article AS a, categorie_article AS c WHERE c.id=a.id_categorie";
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute();
@@ -37,12 +102,12 @@ function getArticle($id = null, $searchData = array())
 function getClient($id = null)
 {
     if (!empty($id)) {
-        $sql = "SELECT * FROM client WHERE id=?";
+        $sql = "SELECT * FROM user WHERE id=?";
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute(array($id));
         return $req->fetch();
     } else {
-        $sql = "SELECT * FROM client";
+        $sql = "SELECT * FROM user";
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute();
         return $req->fetchAll();
@@ -52,15 +117,15 @@ function getClient($id = null)
 function getVente($id = null)
 {
     if (!empty($id)) {
-        $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, prix_unitaire, adresse, telephone 
-        FROM client AS c,vente AS v, article AS a WHERE v.id_article=a.id AND v.id_client=c.id AND etat=?";
+        $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, prix_unitaire, adresse, telephone
+        FROM user AS u, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_user=u.id AND etat=?";
 
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute(array($id, 1));
         return $req->fetch();
     } else {
         $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, a.id AS idArticle
-        FROM client AS c,vente AS v, article AS a WHERE v.id_article=a.id AND v.id_client=c.id AND etat=?";
+        FROM user AS u, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_user=u.id AND etat=?";
 
         $req = $GLOBALS['connexion']->prepare($sql);
         $req->execute(array(1));
@@ -149,7 +214,7 @@ function getCA()
 function getLastVente()
 {
     $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, a.id AS idArticle
-        FROM client AS c, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_client=c.id AND etat=? 
+        FROM user AS u, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_user=u.id AND etat=? 
         ORDER BY date_vente DESC LIMIT 10";
 
     $req = $GLOBALS['connexion']->prepare($sql);
@@ -162,7 +227,7 @@ function getLastVente()
 function getMostVente()
 {
     $sql = "SELECT a.nom_article, SUM(prix) AS prix
-        FROM client AS c, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_client=c.id AND etat=?
+        FROM user AS u, vente AS v, article AS a WHERE v.id_article=a.id AND v.id_user=u.id AND etat=?
         GROUP BY a.id
         ORDER BY prix DESC LIMIT 10";
 

@@ -1,28 +1,36 @@
 <?php
-
 include './connexion.php';
 
-// Vérification des informations d'inscription
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm_password"];
-    $role = $_POST["role"];
-
-    // Vérifier si les mots de passe correspondent
-    if ($password === $confirm_password) {
-        // Requête SQL pour insérer l'utilisateur dans la base de données
-        $sql = "INSERT INTO user (username, password, role) VALUES ('$username', '$password', '$role')";
-
-        if ($connexion->query($sql) === TRUE) {
-            // Informations d'inscription réussies
-            header("Location: login.php");
-            exit();
-        }
-    } else {
-        // Les mots de passe ne correspondent pas, afficher un message d'erreur
-        echo "Les mots de passe ne correspondent pas.";
-    }
+if ($_POST["password"] !== $_POST["confirm_password"]) {
+    header("Location: ../register.php?message=Les mots de passe ne correspondent pas.");
 }
 
-header('Location: ./login.php');
+$req = $connexion->prepare("SELECT * FROM user WHERE nom = :nom");
+$req->bindParam(":nom", $_POST["nom"]);
+$req->execute();
+
+$result = $req->fetch(PDO::FETCH_ASSOC);
+
+if ($result) {
+
+    header("Location: ../register.php?message=Ce Compte existe déjà");
+}
+
+if (!$result) {
+
+    $passwordToHash = ":password" . $config["SECRET_KEY"];
+    $hash = md5($passwordToHash);
+
+    $role = "client";
+
+    $req = $connexion->prepare("INSERT INTO user (nom, prenom, telephone, adresse, password, role) VALUE (:nom, :prenom, :telephone, :adresse, :password, :role)");
+    $req->bindParam(":nom", $_POST["nom"]);
+    $req->bindParam(":prenom", $_POST["prenom"]);
+    $req->bindParam(":telephone", $_POST["telephone"]);
+    $req->bindParam(":adresse", $_POST["adresse"]);
+    $req->bindParam(":password", $hash);
+    $req->bindParam(":role", $role);
+    $req->execute();
+
+    header("Location: ../login.php");
+}

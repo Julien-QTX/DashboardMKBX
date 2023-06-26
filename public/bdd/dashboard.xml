@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Hôte : localhost:8889
+- Généré le : ven. 23 juin 2023 à 15:06
+- Version du serveur : 5.7.39
+- Version de PHP : 7.4.33
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="dashboard" collation="utf8_general_ci" charset="utf8">
+            <pma:table name="article">
+                CREATE TABLE `article` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nom_article` varchar(50) NOT NULL,
+                  `id_categorie` int(11) NOT NULL,
+                  `images` varchar(255) DEFAULT NULL,
+                  `description` text NOT NULL,
+                  `quantite` int(11) NOT NULL,
+                  `prix_unitaire` float NOT NULL,
+                  `date_fabrication` datetime NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `id_categorie` (`id_categorie`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="categorie_article">
+                CREATE TABLE `categorie_article` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `libelle_categorie` varchar(250) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="commande">
+                CREATE TABLE `commande` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_article` int(11) NOT NULL,
+                  `id_fournisseur` int(11) NOT NULL,
+                  `quantite` int(11) NOT NULL,
+                  `prix` float NOT NULL,
+                  `date_commande` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  PRIMARY KEY (`id`),
+                  KEY `id_article` (`id_article`),
+                  KEY `id_fournisseur` (`id_fournisseur`),
+                  CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id`),
+                  CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`id_fournisseur`) REFERENCES `fournisseur` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="fournisseur">
+                CREATE TABLE `fournisseur` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nom` varchar(30) NOT NULL,
+                  `prenom` varchar(30) NOT NULL,
+                  `telephone` varchar(15) NOT NULL,
+                  `adresse` varchar(50) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="user">
+                CREATE TABLE `user` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nom` varchar(30) NOT NULL,
+                  `prenom` varchar(30) NOT NULL,
+                  `password` varchar(250) NOT NULL,
+                  `telephone` int(10) NOT NULL,
+                  `adresse` varchar(50) NOT NULL,
+                  `role` varchar(250) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="vente">
+                CREATE TABLE `vente` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_article` int(11) NOT NULL,
+                  `id_user` int(11) NOT NULL,
+                  `quantite` int(11) NOT NULL,
+                  `prix` float NOT NULL,
+                  `date_vente` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `etat` enum('0','1') NOT NULL DEFAULT '1',
+                  PRIMARY KEY (`id`),
+                  KEY `id_article` (`id_article`),
+                  KEY `id_user` (`id_user`),
+                  CONSTRAINT `vente_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id`),
+                  CONSTRAINT `vente_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de données : 'dashboard'
+    -->
+    <database name="dashboard">
+        <!-- Table article -->
+        <table name="article">
+            <column name="id">1</column>
+            <column name="nom_article">mac</column>
+            <column name="id_categorie">1</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">22</column>
+            <column name="prix_unitaire">1921</column>
+            <column name="date_fabrication">2023-06-13 16:22:00</column>
+        </table>
+        <table name="article">
+            <column name="id">8</column>
+            <column name="nom_article">macOS</column>
+            <column name="id_categorie">1</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">25</column>
+            <column name="prix_unitaire">5660</column>
+            <column name="date_fabrication">2023-06-12 20:34:00</column>
+        </table>
+        <table name="article">
+            <column name="id">9</column>
+            <column name="nom_article">Imac</column>
+            <column name="id_categorie">1</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">10</column>
+            <column name="prix_unitaire">20</column>
+            <column name="date_fabrication">2023-06-07 16:58:00</column>
+        </table>
+        <table name="article">
+            <column name="id">10</column>
+            <column name="nom_article">HP</column>
+            <column name="id_categorie">2</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">10</column>
+            <column name="prix_unitaire">19</column>
+            <column name="date_fabrication">2023-06-10 09:41:00</column>
+        </table>
+        <table name="article">
+            <column name="id">11</column>
+            <column name="nom_article">Intel</column>
+            <column name="id_categorie">1</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">30</column>
+            <column name="prix_unitaire">90</column>
+            <column name="date_fabrication">2023-06-12 15:06:00</column>
+        </table>
+        <table name="article">
+            <column name="id">12</column>
+            <column name="nom_article">Samsung</column>
+            <column name="id_categorie">4</column>
+            <column name="images"></column>
+            <column name="description"></column>
+            <column name="quantite">11</column>
+            <column name="prix_unitaire">57</column>
+            <column name="date_fabrication">2023-06-13 13:42:00</column>
+        </table>
+        <table name="article">
+            <column name="id">13</column>
+            <column name="nom_article">Epson</column>
+            <column name="id_categorie">2</column>
+            <column name="images">../public/images/Capture d’écran 2023-01-30 à 09.40.25.png</column>
+            <column name="description">super imprimante</column>
+            <column name="quantite">10</column>
+            <column name="prix_unitaire">28</column>
+            <column name="date_fabrication">2023-06-08 17:05:00</column>
+        </table>
+        <table name="article">
+            <column name="id">14</column>
+            <column name="nom_article">Iphone</column>
+            <column name="id_categorie">4</column>
+            <column name="images">../public/images/iphone-14-pro-max.jpg</column>
+            <column name="description"></column>
+            <column name="quantite">45</column>
+            <column name="prix_unitaire">1200</column>
+            <column name="date_fabrication">2023-06-12 17:53:00</column>
+        </table>
+        <table name="article">
+            <column name="id">15</column>
+            <column name="nom_article">Xiaomi</column>
+            <column name="id_categorie">4</column>
+            <column name="images">../public/images/Redmi_Note_11_Visuel_Azur_01_1140x1140.jpg</column>
+            <column name="description"></column>
+            <column name="quantite">4600</column>
+            <column name="prix_unitaire">800</column>
+            <column name="date_fabrication">2023-06-12 19:54:00</column>
+        </table>
+        <!-- Table categorie_article -->
+        <table name="categorie_article">
+            <column name="id">1</column>
+            <column name="libelle_categorie">Ordinateur</column>
+        </table>
+        <table name="categorie_article">
+            <column name="id">2</column>
+            <column name="libelle_categorie">Imprimante</column>
+        </table>
+        <table name="categorie_article">
+            <column name="id">3</column>
+            <column name="libelle_categorie">ecran</column>
+        </table>
+        <table name="categorie_article">
+            <column name="id">4</column>
+            <column name="libelle_categorie">Telephone</column>
+        </table>
+        <!-- Table commande -->
+        <table name="commande">
+            <column name="id">1</column>
+            <column name="id_article">8</column>
+            <column name="id_fournisseur">1</column>
+            <column name="quantite">9</column>
+            <column name="prix">50940</column>
+            <column name="date_commande">2023-06-15 17:45:50</column>
+        </table>
+        <table name="commande">
+            <column name="id">2</column>
+            <column name="id_article">9</column>
+            <column name="id_fournisseur">1</column>
+            <column name="quantite">8</column>
+            <column name="prix">160</column>
+            <column name="date_commande">2023-06-15 17:50:01</column>
+        </table>
+        <table name="commande">
+            <column name="id">3</column>
+            <column name="id_article">8</column>
+            <column name="id_fournisseur">1</column>
+            <column name="quantite">5</column>
+            <column name="prix">28300</column>
+            <column name="date_commande">2023-06-16 09:40:51</column>
+        </table>
+        <table name="commande">
+            <column name="id">4</column>
+            <column name="id_article">15</column>
+            <column name="id_fournisseur">2</column>
+            <column name="quantite">100</column>
+            <column name="prix">80000</column>
+            <column name="date_commande">2023-06-19 19:59:58</column>
+        </table>
+        <!-- Table fournisseur -->
+        <table name="fournisseur">
+            <column name="id">1</column>
+            <column name="nom">Henry</column>
+            <column name="prenom">Dupont</column>
+            <column name="telephone">0123456789</column>
+            <column name="adresse">New York</column>
+        </table>
+        <table name="fournisseur">
+            <column name="id">2</column>
+            <column name="nom">Dupont de Ligonnès</column>
+            <column name="prenom">Xavier</column>
+            <column name="telephone">1213141516</column>
+            <column name="adresse">on ne sais pas</column>
+        </table>
+        <!-- Table user -->
+        <table name="user">
+            <column name="id">1</column>
+            <column name="nom">admin</column>
+            <column name="prenom">admin</column>
+            <column name="password">a48a86be0695702b384941c5b8a68d69</column>
+            <column name="telephone">123456789</column>
+            <column name="adresse">admin@admin.fr</column>
+            <column name="role">admin</column>
+        </table>
+        <table name="user">
+            <column name="id">27</column>
+            <column name="nom">Quatravaux</column>
+            <column name="prenom">Julien</column>
+            <column name="password">a48a86be0695702b384941c5b8a68d69</column>
+            <column name="telephone">123456789</column>
+            <column name="adresse">julienqtx@live.fr</column>
+            <column name="role">client</column>
+        </table>
+        <table name="user">
+            <column name="id">29</column>
+            <column name="nom">manager</column>
+            <column name="prenom">manager</column>
+            <column name="password">a48a86be0695702b384941c5b8a68d69</column>
+            <column name="telephone">123456789</column>
+            <column name="adresse">manager@manager.fr</column>
+            <column name="role">manager</column>
+        </table>
+        <!-- Table vente -->
+        <table name="vente">
+            <column name="id">1</column>
+            <column name="id_article">9</column>
+            <column name="id_user">1</column>
+            <column name="quantite">5</column>
+            <column name="prix">2000</column>
+            <column name="date_vente">2023-06-15 15:09:36</column>
+            <column name="etat">1</column>
+        </table>
+        <table name="vente">
+            <column name="id">2</column>
+            <column name="id_article">8</column>
+            <column name="id_user">1</column>
+            <column name="quantite">5666</column>
+            <column name="prix">23</column>
+            <column name="date_vente">2023-06-15 15:18:35</column>
+            <column name="etat">1</column>
+        </table>
+        <table name="vente">
+            <column name="id">3</column>
+            <column name="id_article">9</column>
+            <column name="id_user">1</column>
+            <column name="quantite">1</column>
+            <column name="prix">20</column>
+            <column name="date_vente">2023-06-15 17:05:35</column>
+            <column name="etat">0</column>
+        </table>
+        <table name="vente">
+            <column name="id">4</column>
+            <column name="id_article">11</column>
+            <column name="id_user">1</column>
+            <column name="quantite">15</column>
+            <column name="prix">1350</column>
+            <column name="date_vente">2023-06-16 09:51:19</column>
+            <column name="etat">1</column>
+        </table>
+    </database>
+</pma_xml_export>

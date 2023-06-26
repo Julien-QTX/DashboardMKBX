@@ -1,7 +1,7 @@
 <?php
 include '../model/function.php';
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['nom'])) {
     header("Location: ../login.php");
 }
 
@@ -37,12 +37,6 @@ if (!isset($_SESSION['username'])) {
                 <a href="./vente.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "vente.php" ? "active" : "" ?>">
                     <i class='bx bx-shopping-bag'></i>
                     <span class="links_name">Vente</span>
-                </a>
-            </li>
-            <li>
-                <a href="./client.php" class="<?php echo basename($_SERVER['PHP_SELF']) == "client.php" ? "active" : "" ?>">
-                    <i class="bx bx-user"></i>
-                    <span class="links_name">Client</span>
                 </a>
             </li>
             <li>
@@ -104,13 +98,14 @@ if (!isset($_SESSION['username'])) {
                 <i class="bx bx-heart" ></i>
                 <span class="links_name">Favrorites</span>
             </a>
-            </li> -->
+            </li>
             <li>
                 <a href="#">
                     <i class="bx bx-cog"></i>
                     <span class="links_name">Configuration</span>
                 </a>
-            </li>
+            </li>-->
+
             <li class="log_out">
                 <a href="../model/disconnect.php">
                     <i class="bx bx-log-out"></i>
@@ -125,13 +120,13 @@ if (!isset($_SESSION['username'])) {
                 <i class="bx bx-menu sidebarBtn"></i>
                 <span class="dashboard"><?php echo ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF']))); ?></span>
             </div>
-            <div class="search-box">
+            <!--<div class="search-box">
                 <input type="text" placeholder="Recherche..." />
                 <i class="bx bx-search"></i>
             </div>
             <div class="profile-details">
-                <!--<img src="images/profile.jpg" alt="">-->
+                <img src="images/profile.jpg" alt="">
                 <span class="admin_name">Komche</span>
                 <i class="bx bx-chevron-down"></i>
-            </div>
+            </div>-->
         </nav>

@@ -63,7 +63,7 @@ include './header.php';
                     <?php
                     foreach ($ventes as $key => $value) {
                     ?>
-                        <li><a href="#"><?php echo date('d M Y', strtotime($value['date_vente'])) ?></a></li>
+                    <li><a href="#"><?php echo date('d M Y', strtotime($value['date_vente'])) ?></a></li>
                     <?php
                     }
                     ?>
@@ -74,7 +74,7 @@ include './header.php';
                     <?php
                     foreach ($ventes as $key => $value) {
                     ?>
-                        <li><a href="#"><?php echo $value['nom'] . " " . $value['prenom'] ?></a></li>
+                    <li><a href="#"><?php echo $value['nom'] . " " . $value['prenom'] ?></a></li>
                     <?php
                     }
                     ?>
@@ -84,7 +84,7 @@ include './header.php';
                     <?php
                     foreach ($ventes as $key => $value) {
                     ?>
-                        <li><a href="#"><?php echo $value['nom_article'] ?></a></li>
+                    <li><a href="#"><?php echo $value['nom_article'] ?></a></li>
                     <?php
                     }
                     ?>
@@ -94,7 +94,7 @@ include './header.php';
                     <?php
                     foreach ($ventes as $key => $value) {
                     ?>
-                        <li><a href="#"><?php echo number_format($value['prix'], 0, ",", " ") . " €" ?></a></li>
+                    <li><a href="#"><?php echo number_format($value['prix'], 0, ",", " ") . " €" ?></a></li>
                     <?php
                     }
                     ?>
@@ -111,12 +111,12 @@ include './header.php';
                 $articles = getMostVente();
                 foreach ($articles as $key => $value) {
                 ?>
-                    <li>
-                        <a href="#">
-                            <span class="product"><?php echo $value['nom_article'] ?></span>
-                        </a>
-                        <span class="price"><?php echo number_format($value['prix'], 0, ",", " ") . " €" ?></span>
-                    </li>
+                <li>
+                    <a href="#">
+                        <span class="product"><?php echo $value['nom_article'] ?></span>
+                    </a>
+                    <span class="price"><?php echo number_format($value['prix'], 0, ",", " ") . " €" ?></span>
+                </li>
                 <?php
                 }
                 ?>
@@ -127,6 +127,6 @@ include './header.php';
 </section>
 
 <?php
-include './vue/footer.php';
+include './footer.php';
 
 ?>

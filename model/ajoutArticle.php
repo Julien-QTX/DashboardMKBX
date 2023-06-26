@@ -4,14 +4,14 @@ include_once './connexion.php';
 if (
     !empty($_POST['nom_article'])
     && !empty($_POST['id_categorie'])
+    && !empty($_POST['descritpion'])
     && !empty($_POST['quantite'])
     && !empty($_POST['prix_unitaire'])
     && !empty($_POST['date_fabrication'])
-    && !empty($_POST['date_expiration'])
     && !empty($_FILES['images'])
 ) {
 
-    $sql = "INSERT INTO article(nom_article, id_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, images)
+    $sql = "INSERT INTO article(nom_article, id_categorie, descritpion, quantite, prix_unitaire, date_fabrication, images)
         VALUES(?, ?, ?, ?, ?, ?, ?)";
 
     $req = $connexion->prepare($sql);
@@ -30,10 +30,10 @@ if (
         $req->execute(array(
             $_POST['nom_article'],
             $_POST['id_categorie'],
+            $_POST['descritpion'],
             $_POST['quantite'],
             $_POST['prix_unitaire'],
             $_POST['date_fabrication'],
-            $_POST['date_expiration'],
             $destination
         ));
 

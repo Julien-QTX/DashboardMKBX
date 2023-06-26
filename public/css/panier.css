@@ -1,0 +1,29 @@
+.section_panier {
+  border: black solid 2px;
+  border-radius: 8px;
+  width: 60%;
+  margin: auto;
+  padding: 2vh;
+}
+
+.table_panier {
+  margin: auto;
+  width: 95%;
+  text-align: center;
+}
+
+.total {
+  display: flex;
+  width: 298%;
+  justify-content: flex-end;
+}
+
+.div_button_panier {
+  margin: auto auto 5vh;
+  width: 20%;
+}
+
+.button_panier {
+  width: 100%;
+  margin: 3vh;
+}

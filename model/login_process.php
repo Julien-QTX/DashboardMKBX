@@ -2,9 +2,13 @@
 
 require './connexion.php';
 
-$req = $connexion->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
-$req->bindParam(":username", $_POST["username"]);
-$req->bindParam(":password", $_POST["password"]);
+$passwordToHash = ":password" . $config["SECRET_KEY"];
+$hash = md5($passwordToHash);
+
+
+$req = $connexion->prepare("SELECT * FROM user WHERE nom = :nom AND password = :password");
+$req->bindParam(":nom", $_POST["nom"]);
+$req->bindParam(":password", $hash);
 $req->execute();
 
 $result = $req->fetch(PDO::FETCH_ASSOC);
@@ -12,19 +16,13 @@ $result = $req->fetch(PDO::FETCH_ASSOC);
 if (!$result) {
     header("Location: ../login.php?message=Login Error");
 } else {
-    session_start();
-    $_SESSION['username'] = $result["username"];
-    header("Location: ../index.php");
+    $_SESSION['id'] = $result["id"];
+    $_SESSION['nom'] = $result["nom"];
+    $_SESSION['role'] = $result['role'];
+
+    if ($result['role'] === "admin" || $result['role'] === "manager") {
+        header("Location: ../vue/dashboard.php");
+    } else {
+        header("Location: ../index.php");
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-//var_dump($result);

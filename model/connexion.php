@@ -1,16 +1,10 @@
 <?php
 
+require_once(dirname(__FILE__) . "/config.php");
 session_start();
 
-$nom_serveur = "localhost";
-$nom_base_de_donnee = "dashboard";
-$utilisateur = "root";
-$mot_de_passe = "root";
-$Secret_Key = "secret";
-$role = ["admin", "manager", "client"];
-
 try {
-    $connexion = new PDO("mysql:host=$nom_serveur;dbname=$nom_base_de_donnee", $utilisateur, $mot_de_passe);
+    $connexion = new PDO("mysql:host={$config['DB_HOST']};dbname={$config['DB_NAME']}", $config['DB_USER'], $config['DB_PASSWORD']);
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     return $connexion;

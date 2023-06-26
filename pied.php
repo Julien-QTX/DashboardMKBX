@@ -29,7 +29,6 @@
       <!-- copyright section end -->
       <!-- Javascript files-->
       <script src="public/js/jquery.min.js"></script>
-      <script src="public/js/loginSignUp.js"></script>
       <script src="public/js/popper.min.js"></script>
       <script src="public/js/bootstrap.bundle.min.js"></script>
       <script src="public/js/jquery-3.0.0.min.js"></script>
@@ -38,14 +37,15 @@
       <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/custom.js"></script>
       <script>
-          function openNav() {
-              document.getElementById("mySidenav").style.width = "250px";
-          }
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
 
-          function closeNav() {
-              document.getElementById("mySidenav").style.width = "0";
-          }
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
       </script>
+      <link rel="stylesheet" href="./public/css/style.css">
       </body>
 
       </html>

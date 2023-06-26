@@ -8,7 +8,7 @@ if (
     && !empty($_POST['id'])
 ) {
 
-    $sql = "UPDATE client SET nom=?, prenom=?, telephone=?, adresse=? WHERE id=?";
+    $sql = "UPDATE user SET nom=?, prenom=?, telephone=?, adresse=? WHERE id=?";
 
     $req = $connexion->prepare($sql);
 
@@ -21,7 +21,7 @@ if (
     ));
 
     if ($req->rowCount() != 0) {
-        $_SESSION['message']['text'] = "Le client modifié avec succès";
+        $_SESSION['message']['text'] = "Le user modifié avec succès";
         $_SESSION['message']['type'] = "sucess";
     } else {
         $_SESSION['message']['text'] = "Rien n'a été modifié";
@@ -32,4 +32,4 @@ if (
     $_SESSION['message']['type'] = "danger";
 }
 
-header('Location: ../vue/client.php');
+header('Location: ../vue/user.php');

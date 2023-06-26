@@ -1,0 +1,29 @@
+.section_profil {
+  border: black solid 2px;
+  border-radius: 8px;
+  width: 60%;
+  margin: 7vh auto 13vh;
+  padding: 2vh;
+}
+
+.table_profil {
+  margin: auto;
+  width: 95%;
+  text-align: center;
+}
+
+.total {
+  display: flex;
+  width: 298%;
+  justify-content: flex-end;
+}
+
+.div_button_profil {
+  margin: auto auto 5vh;
+  width: 20%;
+}
+
+.button_profil {
+  width: 100%;
+  margin: 3vh;
+}

@@ -212,7 +212,6 @@ button {
 
 .banner_bg_main {
   width: 100%;
-  float: left;
   background-image: url(../images/banner-bg.png);
   height: auto;
   background-size: 100%;
@@ -467,7 +466,6 @@ a:hover {
 
 .banner_section {
   width: 100%;
-  float: left;
   padding-bottom: 60px;
 }
 
